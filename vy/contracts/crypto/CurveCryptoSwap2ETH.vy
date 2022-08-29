@@ -164,6 +164,8 @@ PRECISIONS: uint256  # packed
 
 @external
 def __init__(_weth: address):
+    assert _weth != ZERO_ADDRESS
+
     WETH20 = _weth
     self.mid_fee = 22022022
 

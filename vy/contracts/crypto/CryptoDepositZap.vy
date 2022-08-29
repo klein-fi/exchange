@@ -37,6 +37,9 @@ token: public(address)
 
 @external
 def __init__(_pool: address, _base_pool: address):
+    assert _pool != ZERO_ADDRESS
+    assert _base_pool != ZERO_ADDRESS
+
     self.pool = _pool
     self.base_pool = _base_pool
     self.token = CurveCryptoSwap(_pool).token()

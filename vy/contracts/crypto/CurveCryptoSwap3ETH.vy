@@ -210,6 +210,10 @@ def __init__(
         _coins: address[N_COINS]
 
 ):
+    assert owner != ZERO_ADDRESS
+    assert admin_fee_receiver != ZERO_ADDRESS
+    assert _token != ZERO_ADDRESS
+
     self.owner = owner
 
     # Pack A and gamma:
@@ -1120,6 +1124,7 @@ def revert_new_parameters():
 def commit_transfer_ownership(_owner: address):
     assert msg.sender == self.owner  # dev: only owner
     assert self.transfer_ownership_deadline == 0  # dev: active transfer
+    assert _owner != ZERO_ADDRESS
 
     _deadline: uint256 = block.timestamp + ADMIN_ACTIONS_DELAY
     self.transfer_ownership_deadline = _deadline

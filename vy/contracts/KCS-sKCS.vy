@@ -140,8 +140,10 @@ def __init__(
     @param _fee Fee to charge for exchanges
     @param _admin_fee Admin fee
     """
+    assert _owner != ZERO_ADDRESS
     assert _coins[0] == 0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE
     assert _coins[1] != ZERO_ADDRESS
+    assert _pool_token != ZERO_ADDRESS
 
     self.coins = _coins
     self.initial_A = _A * A_PRECISION
@@ -777,6 +779,7 @@ def revert_new_parameters():
 def commit_transfer_ownership(_owner: address):
     assert msg.sender == self.owner  # dev: only owner
     assert self.transfer_ownership_deadline == 0  # dev: active transfer
+    assert _owner != ZERO_ADDRESS
 
     _deadline: uint256 = block.timestamp + ADMIN_ACTIONS_DELAY
     self.transfer_ownership_deadline = _deadline

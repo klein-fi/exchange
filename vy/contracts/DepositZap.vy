@@ -53,6 +53,9 @@ def __init__(_base_pool: address,_base_lp_token: address,_base_coins:address[3])
     """
     @notice Contract constructor
     """
+    assert _base_pool != ZERO_ADDRESS
+    assert _base_lp_token != ZERO_ADDRESS
+
     self.base_pool = _base_pool
     self.base_lp_token = _base_lp_token
     self.base_coins = _base_coins

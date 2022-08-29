@@ -160,6 +160,9 @@ def initialize(
     """
     # check if fee was already set to prevent initializing contract twice
     assert self.fee == 0
+    assert _base_pool != ZERO_ADDRESS
+    assert _base_lp != ZERO_ADDRESS
+    assert _coin != ZERO_ADDRESS
 
     self.base_pool=_base_pool
     self.base_coins=_base_coins
