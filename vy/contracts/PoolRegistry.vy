@@ -142,6 +142,8 @@ def __init__(_address_provider: address, _gauge_controller: address):
     """
     @notice Constructor function
     """
+    assert _address_provider != ZERO_ADDRESS
+
     self.address_provider = AddressProvider(_address_provider)
     self.gauge_controller = _gauge_controller
 

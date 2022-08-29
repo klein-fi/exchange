@@ -130,6 +130,8 @@ def __init__(
     _gauge_implementation: address,
     _weth: address
 ):
+    assert _fee_receiver != ZERO_ADDRESS
+
     self.fee_receiver = _fee_receiver
     self.pool_implementation = _pool_implementation
     self.token_implementation = _token_implementation
@@ -311,6 +313,7 @@ def commit_transfer_ownership(_addr: address):
     @param _addr Address of the new owner
     """
     assert msg.sender == self.admin  # dev: admin only
+    assert _addr != ZERO_ADDRESS
 
     self.future_admin = _addr
 

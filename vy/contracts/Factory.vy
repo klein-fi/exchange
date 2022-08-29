@@ -144,6 +144,9 @@ market_counts: HashMap[uint256, uint256]
 
 @external
 def __init__(_fee_receiver: address,_address_provider: address):
+    assert _fee_receiver != ZERO_ADDRESS
+    assert _address_provider != ZERO_ADDRESS
+
     self.admin = msg.sender
     self.manager = msg.sender
     self.fee_receiver = _fee_receiver
@@ -834,6 +837,7 @@ def commit_transfer_ownership(_addr: address):
     @param _addr Address of the new owner
     """
     assert msg.sender == self.admin  # dev: admin only
+    assert _addr != ZERO_ADDRESS
 
     self.future_admin = _addr
 

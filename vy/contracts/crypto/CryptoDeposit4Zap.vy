@@ -43,6 +43,9 @@ TOKEN: immutable(address)
 
 @external
 def __init__(pool: address, base_pool: address):
+    assert pool != ZERO_ADDRESS
+    assert base_pool != ZERO_ADDRESS
+
     coins: address[N_COINS] = empty(address[N_COINS])
     ul_coins: address[N_UL_COINS] = empty(address[N_UL_COINS])
     POOL = pool

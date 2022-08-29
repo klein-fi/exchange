@@ -42,6 +42,8 @@ get_id_info: public(HashMap[uint256, AddressInfo])
 
 @external
 def __init__(_admin: address):
+    assert _admin != ZERO_ADDRESS
+
     self.admin = _admin
     self.queue_length = 1
     self.get_id_info[0].description = "Main Registry"
@@ -168,6 +170,7 @@ def commit_transfer_ownership(_new_admin: address) -> bool:
     """
     assert msg.sender == self.admin  # dev: admin-only function
     assert self.transfer_ownership_deadline == 0  # dev: transfer already active
+    assert _new_admin != ZERO_ADDRESS
 
     deadline: uint256 = block.timestamp + 3*86400
     self.transfer_ownership_deadline = deadline
